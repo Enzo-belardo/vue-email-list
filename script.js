@@ -3,23 +3,24 @@ createApp({
     data(){
         return{
             email: null
-
         }
     },
 
     methods:{
-        getEmail(){
-            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-            .then(function(response){
-                console.log(response.data.response)
-    
-            })
+        getRandomEmails(){
+            for (let i = 0; i <= 10; i++){
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+                .then((response) => {
+                    console.log(response.data.response)
+                    this.email = (response.data.response)
+                })
 
+            }
         }
-
     },
 
     created(){
-        this.getEmail()
+        this.getRandomEmails()
     }
+
 }).mount('#app');
